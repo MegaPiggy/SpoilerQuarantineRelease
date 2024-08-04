@@ -33,6 +33,14 @@ namespace SpoilerQuarantineRelease
                 GameObject.DestroyImmediate(GameObject.Find("SolarSystemRoot/DarkBramble_Body/SpoilerQuarantine"));
                 GameObject.DestroyImmediate(GameObject.Find("SolarSystemRoot/FocalBody/SpoilerQuarantine"));
                 GameObject.DestroyImmediate(GameObject.Find("SolarSystemRoot/GiantsDeep_Body/SpoilerQuarantine"));
+                foreach (var referenceFrame in GameObject.FindObjectsOfType(typeof(ReferenceFrameVolume)).Select(rfVolume => ((ReferenceFrameVolume)rfVolume).GetReferenceFrame()))
+                {
+                    referenceFrame.isAvailable = true;
+                }
+                foreach (var mrfVolume in GameObject.FindObjectsOfType(typeof(MajorReferenceFrameVolume)).Cast<MajorReferenceFrameVolume>())
+                {
+                    mrfVolume._isUnavailable = false;
+                }
             }
         }
     }
