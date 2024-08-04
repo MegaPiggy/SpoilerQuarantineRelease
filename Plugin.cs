@@ -13,26 +13,12 @@ namespace SpoilerQuarantineRelease
     [BepInProcess("OuterWilds_AlphaDemo_PC.exe")]
     public class SpoilerQuarantineRelease : BaseUnityPlugin
     {
-
-        private static string gamePath;
-        public static string DllExecutablePath
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(gamePath))
-                    gamePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                return gamePath;
-            }
-
-            private set { }
-        }
-
         private void Awake()
         {
-            Debug.Log($"{nameof(SpoilerQuarantineRelease)} was started");
-            Debug.Log($"The mod script has been placed in the '{this.gameObject.name}'");
-            var harmonyInstance = new Harmony("MegaPiggy.SpoilerQuarantineRelease");
-            harmonyInstance.PatchAll();
+            Logger.LogDebug($"{nameof(SpoilerQuarantineRelease)} was started");
+            Logger.LogDebug($"The mod script has been placed in the '{this.gameObject.name}'");
+            new Harmony("MegaPiggy.SpoilerQuarantineRelease").PatchAll();
+            Logger.LogDebug($"Harmony patching complete");
         }
     }
 
